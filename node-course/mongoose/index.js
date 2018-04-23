@@ -44,13 +44,51 @@ async function createCourse() {
     // .find({ author: /.*Mosh.*/ })
 
 async function getCourses() {
+  const pageNumber = 2;
+  const pageSize = 10;
+
   const courses = await Course
     .find({ author: 'Mosh', isPublished: true })
-    .limit(10)
+    .skip((pageNumber - 1) * pageSize)
+    .limit(pageSize)
     .sort({ name: 1 }) // sort the document in the ascended order
     .select({ name: 1, tags: 1 })
     .count();
   console.log(courses);
 }
+// Query first approach
+// async function updateCourse(id) {
+//   const course = await Course.findById(id);
+//   if (!course) return;
 
-getCourses();
+//   // course.isPublished = true;
+//   // coures.author = 'Another author';
+
+//   course.set({
+//     isPublished: true,
+//     author: 'Another author'
+//   });
+
+//   const result = await course.save();
+//   console.log(result);
+// }
+
+// Update first approach
+async function updateCourse(id) {
+  // const result = await Course.update({ _id: id }, {
+  const course = await Course.findByIdAndUpdate(id, {
+    $set: {
+      author: 'Jason',
+      isPublished: false
+    }
+  }, { new: true });
+  console.log(course);
+}
+
+async function removeCourse(id) {
+  // const result = await Course.deleteOne({ _id: id });
+  const course = await Course.findByIdAndRemove(id)
+  console.log(course);
+}
+
+removeCourse('5ad477ea9f60f720a0ab8ecd');
