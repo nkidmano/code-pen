@@ -1,8 +1,9 @@
-const arr1 = [1, 2, {id:1}];
+const nums = [1,2,3,4,5,1,3,8];
 
-const arr2 = [...arr1];
+const test = nums
+  .filter(num => num > 2)
+  .map(num => ({ value: num }))
+  .filter(obj => obj.value > 3)
+  .map(obj => obj.value);
 
-arr2[2].id = 10;
-arr2[1] = 10;
-console.log(arr1);
-console.log(arr2);
+console.log(test);
