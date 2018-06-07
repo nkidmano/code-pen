@@ -1,9 +1,18 @@
-const nums = [1,2,3,4,5,1,3,8];
+const numbers = [1, 2, 3, 4];
 
-const test = nums
-  .filter(num => num > 2)
-  .map(num => ({ value: num }))
-  .filter(obj => obj.value > 3)
-  .map(obj => obj.value);
+const output = move(numbers, 1, 0);
 
-console.log(test);
+console.log(output);
+
+function move(array, index, offset) {
+  const position = index + offset;
+  if (position >= array.length || position < 0) {
+    console.error('Invalid.');
+    return;
+  }
+
+  const output = [...array];
+  const element = output.splice(index, 1)[0];
+  output.splice(position, 0, element);
+  return output;
+}

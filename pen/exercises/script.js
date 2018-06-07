@@ -111,3 +111,21 @@ function isPrime(number) {
       
   return true;
 }
+
+// Create array for 2 arranged numbers
+function arrayFromRange(min, max) {
+  const output = [];
+  for (min; min <= max; min++)
+    output.push(min);
+  return output;
+}
+
+// Remove element in an array
+function except(array, excluded) {
+  const output = [];
+  for (let element of array) {
+    if (!excluded.includes(element))
+      output.push(element);
+  }
+  return output;
+} 
