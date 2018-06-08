@@ -1,18 +1,12 @@
-const numbers = [1, 2, 3, 4];
+// function countOccurences(array, searchElement) {
+//   let count = 0;
+//   for (let element of array)
+//     if (element === searchElement) count++;
+//   return count;
+// }
 
-const output = move(numbers, 1, 0);
 
-console.log(output);
 
-function move(array, index, offset) {
-  const position = index + offset;
-  if (position >= array.length || position < 0) {
-    console.error('Invalid.');
-    return;
-  }
+const numbers = [1,2,3,4,1];
 
-  const output = [...array];
-  const element = output.splice(index, 1)[0];
-  output.splice(position, 0, element);
-  return output;
-}
+console.log(countOccurences(numbers, 1));

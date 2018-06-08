@@ -128,4 +128,26 @@ function except(array, excluded) {
       output.push(element);
   }
   return output;
-} 
+}
+
+// Move element 
+function move(array, index, offset) {
+  const position = index + offset;
+  if (position >= array.length || position < 0) {
+    console.error('Invalid.');
+    return;
+  }
+
+  const output = [...array];
+  const element = output.splice(index, 1)[0];
+  output.splice(position, 0, element);
+  return output;
+}
+
+// Find occurence
+function countOccurences(array, searchElement) {
+  return array.reduce((accumulator, currentValue) => {
+    const occurence = (searchElement === currentValue) ? 1 : 0;
+    return accumulator + occurence;
+  }, 0);
+}
