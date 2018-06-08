@@ -151,3 +151,25 @@ function countOccurences(array, searchElement) {
     return accumulator + occurence;
   }, 0);
 }
+
+// Chainning method
+const movies = [
+  { title: 'a', year: 2018, rating: 4.5 },
+  { title: 'b', year: 2018, rating: 4.7 },
+  { title: 'c', year: 2018, rating: 3 },
+  { title: 'd', year: 2017, rating: 4.5 },
+];
+  
+const filtered = movies
+  .filter(movie => movie.rating > 4 && movie.year === 2018)
+  .sort((a, b) => b.rating - a.rating)
+  // .reverse()
+  .map(movie => movie.title);
+
+console.log(filtered);
+
+// Max using reduce method
+function getMax(array) {
+  if (array.length === 0) return undefined;
+  return array.reduce((a, b) => (a > b) ? a : b);
+}

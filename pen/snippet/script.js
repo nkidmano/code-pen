@@ -53,3 +53,25 @@ function CreatePost(title, body, author) {
 //   { label: '$$', tooltip: 'Moderate', minPerPerson: 11, maxPerPerson: 20 },
 //   { label: '$$$', tooltip: 'Expensive', minPerPerson: 21, maxPerPerson: 50 },
 // ];
+
+// Arguments objects
+function sum() {
+  let total = 0;
+  for (let value of arguments)
+    total += value;
+  return total;
+}
+
+// Getter and Setter
+const person = {
+  firstname: 'ThanhTan',
+  lastname: 'Duong',
+  get fullName() {
+    console.log(`${this.lastname} ${this.firstname}`);
+  },
+  set fullName(value) {
+    const parts = value.split(' ');
+    this.lastname = parts[0];
+    this.firstname = parts[1];
+  }
+};
