@@ -62,16 +62,39 @@ function sum() {
   return total;
 }
 
-// Getter and Setter
+// Getter and Setter and try catch
 const person = {
-  firstname: 'ThanhTan',
+  firstname: 'Eias',
   lastname: 'Duong',
   get fullName() {
-    console.log(`${this.lastname} ${this.firstname}`);
+    console.log(`${this.firstname} ${this.lastname}`)
   },
   set fullName(value) {
+    if (typeof value !== 'string')
+      throw new Error('Name must be a string');
+
     const parts = value.split(' ');
-    this.lastname = parts[0];
-    this.firstname = parts[1];
+    if (parts.length !== 2)
+      throw new Error('Enter first name and last name');
+
+    this.firstname = parts[0];
+    this.lastname = parts[1];
   }
 };
+
+try {
+  person.fullName = '';
+} catch (error) {
+  alert(error);
+}
+
+// THIS keyword
+const movie = {
+  title: 'Avenger 4',
+  tags: ['super hero', 'film series', 'action'],
+  showTags() {
+    this.tags.forEach(tag =>  console.log(this.title, tag));
+  }
+};
+
+movie.showTags();

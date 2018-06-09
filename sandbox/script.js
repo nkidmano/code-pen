@@ -1,16 +1,16 @@
-const fs = require('fs');
+function countOccurences(array, searchElement) {
+  if (!Array.isArray(array))
+    throw new Error('Invalid array.');
+  return array.reduce((accumulator, currentValue) => {
+    const occurence = (searchElement === currentValue) ? 1 : 0;
+    return accumulator + occurence;
+  }, 0);
+}
 
-const data = fs.readFileSync('data.txt', 'utf8')
-  .split('\n')
-  .map(line => line.split('  '))
-  .reduce((customers, line) => {
-    customers[line[0]] = customers[line[0]] || [];
-    customers[line[0]].push({
-      name: line[1],
-      price: line[2],
-      quantity: line[3]
-    });
-    return customers;
-  }, {})
-
-console.log(JSON.stringify(data, null, 2));
+try {
+  const numbers = [1, 2, 3, 4, 1];
+  const count = countOccurences('numbers', 1);
+  console.log(count);
+} catch(error) {
+  alert(error);
+}
