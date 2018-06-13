@@ -25,10 +25,11 @@ function CreateAddress(street, city, zipCode) {
   this.street = street;
   this.city = city;
   this.zipCode = zipCode;
-  this.findAddress = function() {
-    console.log(`${this.street} ${this.city}`);
-  };
 }
+
+CreateAddress.prototype.findAddress = function() {
+  console.log(`${this.street} ${this.city}`);
+};
 
 const address1 = new CreateAddress('Thach Lam', 'Saigon', 700000);
 const address2 = new CreateAddress('Ly Thai To', 'Saigon', 700000);
@@ -93,8 +94,54 @@ const movie = {
   title: 'Avenger 4',
   tags: ['super hero', 'film series', 'action'],
   showTags() {
-    this.tags.forEach(tag =>  console.log(this.title, tag));
+    this.tags.forEach(tag => console.log(this.title, tag));
   }
 };
 
-movie.showTags();
+// PROTOTYPE
+const addressProto = {
+  findAddress() {
+    console.log(`${this.street} ${this.city}`);
+  },
+  showInfo() {
+    console.log(`${this.name} ${this.zipCode}`);
+  }
+}
+
+const eias = Object.create(addressProto, {
+  name: { value: `Eias` },
+  street: { value: 'Nguyen Lam' },
+  city: { value: 'Ho Chi Minh' },
+  zipCode: { value: 700000 }
+});
+
+// Function returning function
+function interviewQuestion(job) {
+  if (job === 'designer')
+    return name => console.log(`${name} can you please explain what UX design is ?`);
+  else if (job === 'teacher')
+    return name => console.log(`What subject do you teach, ${name}`);
+  else 
+    return name => console.log(`Hello ${name} what do you do`);
+}
+
+// Function returning function with closures
+function interviewQuestion(job) {
+  return name => {
+    if (job === 'designer')
+      console.log(`${name} can you please explain what UX design is ?`);
+    else if (job === 'teacher')
+      console.log(`What subject do you teach, ${name}`);
+    else
+      console.log(`Hello ${name} what do you do`);
+  }
+}
+
+
+// interviewQuestion(`teacher`)(`John`);
+
+// IIFE
+// (function (goodluck) {
+//   const score = Math.floor((Math.random() * 10) + 1);
+//   console.log(score >= 10 - goodluck);
+// })(5);
