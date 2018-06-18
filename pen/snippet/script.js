@@ -98,3 +98,63 @@ const movie = {
 };
 
 movie.showTags();
+
+// Template tagged
+function highlight(strings, ...values) {
+    let str = '';
+    strings.forEach((string, i) => {
+      // str += string + (values[i] || '');
+      str += `${string} <span class="hl">${values[i] || ''}</span>`
+    });
+    return str;
+  }
+
+  const name = 'Duong Thanh Tan';
+  const age = 22;
+  const sentence = highlight`I'm a guy and my name is ${name} and I'm ${age} years old`;
+  document.body.innerHTML = sentence;
+  console.log(sentence);
+
+// Template tagged exercise
+const dict = {
+  HTML: 'Hyper Text Markup Language',
+  CSS: 'Cascade Style Sheets',
+  JS: 'Javascript'
+};
+
+function addAbbreviations(strings, ...values) {
+  const abbreviated = values.map(value => {
+    if (dict[value]) {
+      return `<abbr title='${dict[value]}'>${value}</abbr>`;
+    }
+    return value;
+  });
+
+  return strings.reduce((sentence, string, i) => {
+    return `${sentence}${string}${abbreviated[i] || ''}`;
+  }, '');
+}
+
+const first = 'Eias';
+const last = 'Duong';
+const sentence = addAbbreviations`Hello my name is ${first} ${last} and I love to code ${'HTML'}, ${'CSS'}, ${'JS'}`;
+
+const bio = document.querySelector('.bio');
+const p = document.createElement('p');
+p.innerHTML = sentence;
+bio.appendChild(p);
+
+// Destructuring object
+const person = {
+  name: 'Eias Duong',
+  interest: {
+    game: {
+      MMORPG: 'Guild Wars 2',
+      FPS: 'PUBG'
+    }
+  }
+};
+
+const { MMORPG: rpg, FPS: shooting } = person.interest.game;
+console.log(rpg);
+console.log(shooting);
