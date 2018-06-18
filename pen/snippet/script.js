@@ -25,10 +25,11 @@ function CreateAddress(street, city, zipCode) {
   this.street = street;
   this.city = city;
   this.zipCode = zipCode;
-  this.findAddress = function() {
-    console.log(`${this.street} ${this.city}`);
-  };
 }
+
+CreateAddress.prototype.findAddress = function() {
+  console.log(`${this.street} ${this.city}`);
+};
 
 const address1 = new CreateAddress('Thach Lam', 'Saigon', 700000);
 const address2 = new CreateAddress('Ly Thai To', 'Saigon', 700000);
@@ -93,7 +94,7 @@ const movie = {
   title: 'Avenger 4',
   tags: ['super hero', 'film series', 'action'],
   showTags() {
-    this.tags.forEach(tag =>  console.log(this.title, tag));
+    this.tags.forEach(tag => console.log(this.title, tag));
   }
 };
 
