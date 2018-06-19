@@ -159,3 +159,22 @@ const person = {
 const { MMORPG: rpg, FPS: shooting } = person.interest.game;
 console.log(rpg);
 console.log(shooting);
+
+// Detructuring function, independent arguments
+function tipCalc({ total = 100, tip = 0.15, tax = 0.13 } = {}) {
+  return total + (tip * total) + (tax * total);
+}
+const bill = { tip: 0.20, total: 200 };
+const tip = tipCalc(bill);
+console.log(tip);
+
+// Array from
+const people = document.querySelectorAll('.people p');
+const peopleArray = Array.from(people, person => person.textContent);
+console.log(peopleArray);
+
+function sumAll() {
+  const nums = Array.from(arguments);
+  return nums.reduce((prev, next) => prev + next, 0);
+}
+sumAll(32,421,4213,213,221,321);
