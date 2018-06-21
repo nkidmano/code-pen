@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>FizzBuzz</title>
+</head>
+<body>
+  <h1>Fizz Buzz problem</h1>
+
+
+  <script>
+    for (let i = 0; i < 100; i++) {
+      let output = '';
+      if (i % 3 === 0) output += 'Fizz';
+      if (i % 5 === 0) output += 'Buzz';
+      console.log(output || i);
+    }
+  </script>
+</body>
+</html>

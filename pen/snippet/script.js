@@ -160,21 +160,25 @@ const { MMORPG: rpg, FPS: shooting } = person.interest.game;
 console.log(rpg);
 console.log(shooting);
 
-// Detructuring function, independent arguments
-function tipCalc({ total = 100, tip = 0.15, tax = 0.13 } = {}) {
-  return total + (tip * total) + (tax * total);
-}
-const bill = { tip: 0.20, total: 200 };
-const tip = tipCalc(bill);
-console.log(tip);
+// Object literal upgrades
+const keys = ['size', 'color', 'weight'];
+const values = ['medium', 'red', 100];
 
-// Array from
-const people = document.querySelectorAll('.people p');
-const peopleArray = Array.from(people, person => person.textContent);
-console.log(peopleArray);
+const shirt = {
+  [keys.shift()]: values.shift(),
+  [keys.shift()]: values.shift(),
+  [keys.shift()]: values.shift(),
+};
 
-function sumAll() {
-  const nums = Array.from(arguments);
-  return nums.reduce((prev, next) => prev + next, 0);
-}
-sumAll(32,421,4213,213,221,321);
+console.log(shirt);
+
+// Symbols
+const classRoom = {
+  [Symbol('Tan')]: { grade: 80, gender: 'Male' },
+  [Symbol('Tuyet')]: { grade: 60, gender: 'Female'},
+  [Symbol('Tam')]: { grade: 90, gender: 'Female'}
+};
+
+const syms = Object.getOwnPropertySymbols(classRoom);
+const data = syms.map(sym => classRoom[sym]);
+console.log(data);
